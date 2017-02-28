@@ -1,8 +1,8 @@
-#include <stdint.h>
-#include "lcp111x.h"
-
 #ifndef I2C_H
 #define I2C_H
+
+#include <stdint.h>
+#include "lcp111x.h"
 
 #define MAX_I2C_DATA 64
 
