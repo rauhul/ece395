@@ -1,3 +1,11 @@
+.crf
+.d
+.o
+.dep
+.htm
+.lnp
+.sct
+
 *.DS_Store
 .AppleDouble
 .LSOverride
