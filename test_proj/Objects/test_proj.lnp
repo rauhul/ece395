@@ -1,0 +1,15 @@
+--cpu Cortex-M0
+".\objects\system_lpc11xx.o"
+".\objects\startup_lpc11xx.o"
+".\objects\main.o"
+".\objects\i2c.o"
+".\objects\inv_mpu.o"
+".\objects\inv_mpu_dmp_motion_driver.o"
+".\objects\m0_mpu_6050.o"
+".\objects\timer32.o"
+".\objects\retarget.o"
+".\objects\serial.o"
+--strict --scatter ".\Objects\test_proj.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\test_proj.map" -o .\Objects\test_proj.axf
