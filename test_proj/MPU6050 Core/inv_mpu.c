@@ -510,7 +510,11 @@ const struct gyro_reg_s reg = {
 };
 
 const struct hw_s hw = {
+#if defined ARM_CORTEX_M0
+    .addr           = 0xD0,
+#else
     .addr           = 0x68,
+#endif
     .max_fifo       = 1024,
     .num_reg        = 118,
     .temp_sens      = 340,
@@ -723,7 +727,6 @@ int mpu_read_reg(unsigned char reg, unsigned char *data)
 int mpu_init(struct int_param_s *int_param)
 {
     unsigned char data[6];
-
     /* Reset device. */
     data[0] = BIT_RESET;
     if (i2c_write(st.hw->addr, st.reg->pwr_mgmt_1, 1, data))
@@ -779,7 +782,8 @@ int mpu_init(struct int_param_s *int_param)
         return -1;
     if (mpu_configure_fifo(0))
         return -1;
-
+		
+		
 #ifndef EMPL_TARGET_STM32F4    
     if (int_param)
         reg_int_cb(int_param);
@@ -791,11 +795,13 @@ int mpu_init(struct int_param_s *int_param)
         return -1;
 #else
     /* Already disabled by setup_compass. */
+
     if (mpu_set_bypass(0))
         return -1;
 #endif
 
     mpu_set_sensors(0);
+		printf("fuck");
     return 0;
 }
 
@@ -1884,6 +1890,7 @@ int mpu_set_bypass(unsigned char bypass_on)
             tmp |= BIT_AUX_IF_EN;
         else
             tmp &= ~BIT_AUX_IF_EN;
+				printf("%d, %d, %d, %d", st.hw->addr, st.reg->user_ctrl, 1, tmp);
         if (i2c_write(st.hw->addr, st.reg->user_ctrl, 1, &tmp))
             return -1;
         delay_ms(3);

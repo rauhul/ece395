@@ -54,7 +54,7 @@ be READ or WRITE depending on the I2C command.
 ** Descriptions:		I2C interrupt handler, deal with master mode only.
 **
 ** parameters:			None
-** Returned value:		None
+** Returned value:	None
 ** 
 *****************************************************************************/
 void I2C_IRQHandler(void) 
