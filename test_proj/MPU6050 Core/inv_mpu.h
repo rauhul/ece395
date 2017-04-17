@@ -41,8 +41,7 @@ struct int_param_s {
 #elif defined EMPL_TARGET_STM32F4
     void (*cb)(void);
 #elif defined ARM_CORTEX_M0
-	  unsigned short pin;
-    void (*cb)(void);
+		unsigned short pin;
 #endif
 };
 

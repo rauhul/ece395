@@ -27,15 +27,15 @@ void setup() {
   errors += mpu_configure_fifo(INV_XYZ_GYRO|INV_XYZ_ACCEL);
   errors += mpu_set_sample_rate(DEFAULT_MPU_HZ);
 
-  errors += mpu_get_sample_rate(&gyro_rate); Serial.print("FIFOrate: ");Serial.print(gyro_rate);Serial.println("Hz");
-  errors += mpu_get_gyro_fsr(&gyro_fsr); Serial.print("Gyro FSR: +/- ");Serial.print(gyro_fsr);Serial.println("DPS");
-  errors += mpu_get_accel_fsr(&accel_fsr); Serial.print("Accel FSR: +/- ");Serial.print(accel_fsr);Serial.println("G");
-
+  errors += mpu_get_sample_rate(&gyro_rate); Serial.print("FIFO rate: ");Serial.print(gyro_rate);Serial.println(" Hz");
+  errors += mpu_get_gyro_fsr(&gyro_fsr); Serial.print("Gyro FSR: +/- ");Serial.print(gyro_fsr);Serial.println(" DPS");
+  errors += mpu_get_accel_fsr(&accel_fsr); Serial.print("Accel FSR: +/- ");Serial.print(accel_fsr);Serial.println(" G");
+/*
   Serial.println(dmp_load_motion_driver_firmware());
   Serial.println(dmp_enable_feature(DMP_FEATURE_TAP | DMP_FEATURE_SEND_RAW_ACCEL | DMP_FEATURE_SEND_CAL_GYRO | DMP_FEATURE_GYRO_CAL));
   Serial.println(dmp_set_fifo_rate(DEFAULT_MPU_HZ));
   Serial.println(mpu_set_dmp_state(1));
-
+*/
 
   errors += mpu_get_gyro_sens(&gyro_sens);
   errors += mpu_get_accel_sens(&accel_sens);

@@ -8,58 +8,31 @@ extern "C" {
 #endif
   int8_t i2c_write(unsigned char slave_addr, unsigned char reg_addr, unsigned char length, unsigned char *data)
   {
+    int8_t retval = !I2Cdev::writeBytes(slave_addr,reg_addr,length,(uint8_t *)data);
+    Serial.print("addr:"); Serial.print(slave_addr); Serial.print(" reg: "); Serial.println(reg_addr);
+    for (int i = 0; i < length; i++) {
+      Serial.print("W: "); Serial.println(data[i]);
+    }
 
-    return !I2Cdev::writeBytes(slave_addr,reg_addr,length,(uint8_t *)data);
-    
-    Wire.beginTransmission(slave_addr);
-    Wire.write(reg_addr);
-    Wire.write(data, length);
-    uint8_t ret_val = Wire.endTransmission(true);
-    
-    if (ret_val) {
-      Serial.print(F("i2cWrite failed: "));
-      Serial.println(ret_val);
-    }  
-    return ret_val;
+    if (length == 1) {
+      uint8_t verify = 10;
+      i2c_read(slave_addr, reg_addr, length, &verify);
+      if (verify != data[0]){
+        Serial.println(">> read != write <<");
+      }
+    }
+
+    return retval;
   }
 
   int8_t i2c_read(unsigned char slave_addr, unsigned char reg_addr, unsigned char length, unsigned char *data)
   {
-        return !I2Cdev::readBytes(slave_addr,reg_addr,length,(uint8_t *)data);
-
-    Wire.beginTransmission(slave_addr);
-    Wire.write(reg_addr);
-    uint8_t ret_val = Wire.endTransmission(true);
-    
-    if (ret_val) {
-      Serial.print(F("i2cRead failed: "));
-      Serial.println(ret_val);
-      data = NULL;
-      return ret_val;
+    int8_t retval = !I2Cdev::readBytes(slave_addr,reg_addr,length,(uint8_t *)data);
+    Serial.print("addr:"); Serial.print(slave_addr); Serial.print(" reg: "); Serial.println(reg_addr);
+    for (int i = 0; i < length; i++) {
+      Serial.print("R: "); Serial.println(data[i]);
     }
-    
-    int ret_length = Wire.requestFrom(slave_addr, length);
-    if (ret_length != length) {
-      Serial.print(F("i2cRequest failed to recieve the number of bytes requested: "));
-      Serial.println(ret_val);
-      data = NULL;
-      return 9;
-    }
-    
-    int index = 0;
-    while(Wire.available() && index < length)
-    {
-      data[index] = Wire.read(); 
-    }
-  
-    if (index != length - 1) {
-      Serial.print(F("i2cRequest failed to recieve the number of bytes requested: "));
-      Serial.println(ret_val);
-      data = NULL;
-      return 9;
-    }
-  
-    return 0;
+    return retval;
   }
 
   int8_t reg_int_cb(struct int_param_s *int_param)
