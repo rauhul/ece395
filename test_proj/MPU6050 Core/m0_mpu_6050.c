@@ -102,10 +102,34 @@ void get_ms(unsigned long *timestamp) {
 	*timestamp = read_timer32(0);
 }
 
+#define INT_PIN	(1<<0)	//select pin of GPIO1
+
 uint8_t reg_int_cb(struct int_param_s *int_param) {
+	if (int_param->should_setup_int == 0) {
+		return 1;
+	}
 	printf("Attach Interrupt\n");
+	
+	LPC_IOCON->R_PIO1_0 |= 0x01;  //select GPIO
+	LPC_GPIO1->DIR &=~INT_PIN;		//0: input
+	LPC_GPIO1->IS  &=~INT_PIN;		//0: Edge on corresponding pin is detected.
+	LPC_GPIO1->IBE &=~INT_PIN;		//0: Single edge, determined by corresponding bit in GPIOIEV register.
+	LPC_GPIO1->IEV &=~INT_PIN;		//0: Falling edges, or low levels on corresponding pin trigger interrupts.
+	LPC_GPIO1->IE  |= INT_PIN;		//1: Corresponding pin interrupt is masked.
+	NVIC_EnableIRQ(EINT1_IRQn);
+
 	return 0;
-	// attach interrupt callback to pin described in int_param
 }
 
+//PIO1 interrupt handler
+volatile int int_data_ready = 0;
+void PIOINT1_IRQHandler(void) {
+	if(LPC_GPIO1->RIS & INT_PIN) { //read raw interrupt status
+		int_data_ready = 1;
+		LPC_GPIO1->IC |= INT_PIN;
+		__NOP();
+		__NOP();
+		//clear edge detection
+	}
+}
 #endif

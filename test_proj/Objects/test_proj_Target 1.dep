@@ -7,7 +7,7 @@ I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x559DA26A)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x559DA26A)
 I (C:\Keil_v5\ARM\Inc\NXP\LPC11xx\system_LPC11xx.h)(0x570412E2)
 F (.\LPC11xx Core\startup_LPC11xx.s)(0x58E401CC)(--cpu Cortex-M0 -g --apcs=interwork -I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\NXP\LPC11xx--pd "__UVISION_VERSION SETA 520"--list .\listings\startup_lpc11xx.lst --xref -o .\objects\startup_lpc11xx.o --depend .\objects\startup_lpc11xx.d)
-F (.\main.c)(0x58F519AB)(--c99 -c --cpu Cortex-M0 -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\NXP\LPC11xx-D__UVISION_VERSION="520" -DMPU6050 -DARM_CORTEX_M0-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\main.c)(0x58F526EE)(--c99 -c --cpu Cortex-M0 -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\NXP\LPC11xx-D__UVISION_VERSION="520" -DMPU6050 -DARM_CORTEX_M0-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x56FEF9AE)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x58C86F63)
 I (C:\Keil_v5\ARM\ARMCC\include\rt_misc.h)(0x56FEF9A4)
@@ -19,7 +19,8 @@ I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x559DA26A)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x559DA26A)
 I (C:\Keil_v5\ARM\Inc\NXP\LPC11xx\system_LPC11xx.h)(0x570412E2)
 I (MPU6050 Core/driver_config.h)(0x58E401CC)
-I (MPU6050 Core/inv_mpu.h)(0x58EBDD2E)
+I (MPU6050 Core/inv_mpu.h)(0x58F51C30)
+I (MPU6050 Core/inv_mpu_dmp_motion_driver.h)(0x58E401CC)
 I (MPU6050 Core/i2c.h)(0x58E401CC)
 I (MPU6050 Core/timer32.h)(0x58E401CD)
 F (.\MPU6050 Core\i2c.c)(0x58E40311)(--c99 -c --cpu Cortex-M0 -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\NXP\LPC11xx-D__UVISION_VERSION="520" -DMPU6050 -DARM_CORTEX_M0-o .\objects\i2c.o --omf_browse .\objects\i2c.crf --depend .\objects\i2c.d)
@@ -31,28 +32,28 @@ I (C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h)(0x559DA26A)
 I (C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h)(0x559DA26A)
 I (C:\Keil_v5\ARM\Inc\NXP\LPC11xx\system_LPC11xx.h)(0x570412E2)
 I (MPU6050 Core\i2c.h)(0x58E401CC)
-F (.\MPU6050 Core\inv_mpu.c)(0x58EBDF83)(--c99 -c --cpu Cortex-M0 -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\NXP\LPC11xx-D__UVISION_VERSION="520" -DMPU6050 -DARM_CORTEX_M0-o .\objects\inv_mpu.o --omf_browse .\objects\inv_mpu.crf --depend .\objects\inv_mpu.d)
+F (.\MPU6050 Core\inv_mpu.c)(0x58F51EB3)(--c99 -c --cpu Cortex-M0 -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\NXP\LPC11xx-D__UVISION_VERSION="520" -DMPU6050 -DARM_CORTEX_M0-o .\objects\inv_mpu.o --omf_browse .\objects\inv_mpu.crf --depend .\objects\inv_mpu.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x56FEF9AE)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x56FEF9AE)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x56FEF9AE)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x56FEF9AE)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x58C86F63)
-I (MPU6050 Core\inv_mpu.h)(0x58EBDD2E)
-I (MPU6050 Core\m0_mpu_6050.h)(0x58EBCA4E)
+I (MPU6050 Core\inv_mpu.h)(0x58F51C30)
+I (MPU6050 Core\m0_mpu_6050.h)(0x58F51BD7)
 F (.\MPU6050 Core\inv_mpu_dmp_motion_driver.c)(0x58E401CC)(--c99 -c --cpu Cortex-M0 -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\NXP\LPC11xx-D__UVISION_VERSION="520" -DMPU6050 -DARM_CORTEX_M0-o .\objects\inv_mpu_dmp_motion_driver.o --omf_browse .\objects\inv_mpu_dmp_motion_driver.crf --depend .\objects\inv_mpu_dmp_motion_driver.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x56FEF9AE)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x56FEF9AE)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x56FEF9AE)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x56FEF9AE)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x58C86F63)
-I (MPU6050 Core\inv_mpu.h)(0x58EBDD2E)
+I (MPU6050 Core\inv_mpu.h)(0x58F51C30)
 I (MPU6050 Core\inv_mpu_dmp_motion_driver.h)(0x58E401CC)
 I (MPU6050 Core\dmpKey.h)(0x58E401CC)
 I (MPU6050 Core\dmpmap.h)(0x58E401CC)
-I (MPU6050 Core\m0_mpu_6050.h)(0x58EBCA4E)
-F (.\MPU6050 Core\m0_mpu_6050.c)(0x58F5117C)(--c99 -c --cpu Cortex-M0 -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\NXP\LPC11xx-D__UVISION_VERSION="520" -DMPU6050 -DARM_CORTEX_M0-o .\objects\m0_mpu_6050.o --omf_browse .\objects\m0_mpu_6050.crf --depend .\objects\m0_mpu_6050.d)
-I (MPU6050 Core\m0_mpu_6050.h)(0x58EBCA4E)
-I (MPU6050 Core\inv_mpu.h)(0x58EBDD2E)
+I (MPU6050 Core\m0_mpu_6050.h)(0x58F51BD7)
+F (.\MPU6050 Core\m0_mpu_6050.c)(0x58F51C57)(--c99 -c --cpu Cortex-M0 -g -O0 --apcs=interwork --split_sections-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\NXP\LPC11xx-D__UVISION_VERSION="520" -DMPU6050 -DARM_CORTEX_M0-o .\objects\m0_mpu_6050.o --omf_browse .\objects\m0_mpu_6050.crf --depend .\objects\m0_mpu_6050.d)
+I (MPU6050 Core\m0_mpu_6050.h)(0x58F51BD7)
+I (MPU6050 Core\inv_mpu.h)(0x58F51C30)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x56FEF9AE)
 I (MPU6050 Core\driver_config.h)(0x58E401CC)
 I (C:\Keil_v5\ARM\Inc\NXP\LPC11xx\LPC11xx.h)(0x559D9878)
