@@ -17,7 +17,7 @@ extern void SER_init (void);
 
 #define DEFAULT_MPU_HZ 4 
 
-	
+
 unsigned short gyro_rate, gyro_fsr;
 unsigned char accel_fsr;
 float gyro_sens;
@@ -43,15 +43,15 @@ void setup_MPU_6050() {
 	printf("Accel FSR: +/- %d G\n", accel_fsr);
 
   errors += dmp_load_motion_driver_firmware();
-	errors += dmp_enable_feature(DMP_FEATURE_TAP | DMP_FEATURE_SEND_RAW_ACCEL | DMP_FEATURE_SEND_CAL_GYRO | DMP_FEATURE_GYRO_CAL);
-  errors += dmp_set_fifo_rate(DEFAULT_MPU_HZ);
+	errors += dmp_set_fifo_rate(DEFAULT_MPU_HZ);
+	errors += dmp_enable_feature(DMP_FEATURE_GYRO_CAL | DMP_FEATURE_6X_LP_QUAT | DMP_FEATURE_SEND_RAW_ACCEL | DMP_FEATURE_SEND_CAL_GYRO);
+	errors += dmp_set_interrupt_mode(DMP_INT_CONTINUOUS);
 	errors += mpu_set_dmp_state(1);
 	
   errors += mpu_get_gyro_sens(&gyro_sens);
   errors += mpu_get_accel_sens(&accel_sens);
   printf("%d errors.\n", errors);
 }
-
 
 short gyro[3], accel[3], sensors;
 unsigned char more;
@@ -72,17 +72,30 @@ int main() {
 
 	while(1) {
 		if (int_data_ready == 1) {
-			dmp_read_fifo(gyro, accel, quat, &sensor_timestamp, &sensors, &more);
-			if (more == 1)
-				int_data_ready = 0;
-			if (sensors & INV_XYZ_GYRO)
-				printf("Gyro: %f %f %f\n", gyro[0]/gyro_sens, gyro[1]/gyro_sens, gyro[2]/gyro_sens);
-			if (sensors & INV_XYZ_ACCEL)
-				printf("Acce: %f %f %f\n", accel[0]/(float)accel_sens, accel[1]/(float)accel_sens, accel[2]/(float)accel_sens);
-			printf("\n");
 			
-			int_data_ready = 0;
+			if (dmp_read_fifo(gyro, accel, quat, &sensor_timestamp, &sensors, &more))
+				int_data_ready = 0;
+			if (more > 0)
+				int_data_ready = 0;
+			
+			if (int_data_ready == 1) {
+				#if defined DEBUG
+					printf("FIFO PACKET:\n");
+					if (sensors & INV_XYZ_GYRO)
+						printf("Gyro: %f %f %f\n", gyro[0]/gyro_sens, gyro[1]/gyro_sens, gyro[2]/gyro_sens);
+					if (sensors & INV_XYZ_ACCEL)
+						printf("Acce: %f %f %f\n", accel[0]/(float)accel_sens, accel[1]/(float)accel_sens, accel[2]/(float)accel_sens);
+					if (sensors & DMP_FEATURE_6X_LP_QUAT)
+						printf("Quat: %ld %ld %ld %ld\n", quat[0], quat[1], quat[2], quat[3]);
+					printf("\n");
+				#elif defined MATLAB_DEMO
+					printf("%ld %ld %ld %ld\n", quat[0], quat[1], quat[2], quat[3]);
+				#else
+				
+				#endif
 
+				int_data_ready = 0;
+			}
 		}
 	}
 }
