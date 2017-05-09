@@ -52,16 +52,18 @@ function simulate_bike_stability
 
         % plot
         figure;
+        subplot(3, 1, 1);
         hold;
         plot(t, state(:,1))
         plot(t, state(:,3))
         hold;
         title('bike theta vs time, motor theta dot vs time');
 
-        figure;
+        subplot(3, 1, 2);
         plot(t, state(:,2))
         title('bike theta dot vs time');
-        figure;
+        
+        subplot(3, 1, 3);
         plot(state(:,1), state(:,2))
         title('bike theta dot vs bike theta');
 
